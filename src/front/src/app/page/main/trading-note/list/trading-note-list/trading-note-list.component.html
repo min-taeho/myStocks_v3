@@ -1,0 +1,38 @@
+<form>
+  <div class="mb-3 row">
+    <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
+    <div class="col-xs-3 col-sm-auto">
+      <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter">
+    </div>
+  </div>
+</form>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+        <th scope="col">포트폴리오</th>
+        <th scope="col">거래일</th>
+        <th scope="col">티커</th>
+        <th scope="col">체결단가</th>
+        <th scope="col">수량</th>
+        <th scope="col">매매구분</th>
+        <th scope="col">거래금액</th>
+        <th scope="col">수수료</th>
+        <th scope="col">환율</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tradingNote of tradingNotes$ | async; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td><ngb-highlight [result]="tradingNote.portfolioName" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="tradingNote.tradingDate" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="tradingNote.ticker" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="tradingNote.unitPrice | number" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="tradingNote.stockNum | number" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="tradingNote.tradingType" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="tradingNote.tradingAmount | number" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="tradingNote.fee | number" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="tradingNote.exchangeRate | number" [term]="filter.value"></ngb-highlight></td>
+    </tr>
+  </tbody>
+</table>

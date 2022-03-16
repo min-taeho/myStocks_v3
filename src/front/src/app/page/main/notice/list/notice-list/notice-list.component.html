@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col text-end">
+    <button type="button" class="btn btn-secondary m-1" (click)="toRigister()">등록</button>
+  </div>
+</div>
+<div class="row">
+
+  <form>
+    <div class="mb-3 row">
+      <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
+      <div class="col-xs-3 col-sm-auto">
+        <input id="table-complete-search" type="text" class="form-control" name="searchTerm" [(ngModel)]="service.searchTerm">
+      </div>
+      <span class="col col-form-label" *ngIf="service.loading$ | async">Loading...</span>
+    </div>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+            <th scope="col" sortable_notice="title" (sort)="onSort($event)">제목</th>
+            <th scope="col" sortable_notice="contents" (sort)="onSort($event)">내용</th>
+            <th scope="col" sortable_notice="createdDate" (sort)="onSort($event)">등록일</th>
+        </tr>
+      </thead>
+     
+      <tbody>
+        <tr *ngFor="let notice of notices$ | async"
+            (dblclick)="rowDoubleClick($event, notice.id)"
+            >
+          <td><ngb-highlight [result]="notice.title" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="notice.contents" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="notice.createdDate" [term]="service.searchTerm"></ngb-highlight></td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination
+        [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+      </ngb-pagination>
+  
+      <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+        <option [ngValue]="2">2 items per page</option>
+        <option [ngValue]="4">4 items per page</option>
+        <option [ngValue]="6">6 items per page</option>
+      </select>
+    </div>
+  
+  </form>
+
+</div>

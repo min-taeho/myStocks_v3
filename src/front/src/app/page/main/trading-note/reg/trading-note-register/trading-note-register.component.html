@@ -1,0 +1,59 @@
+<table class="table table-striped">
+    <thead>
+      <tr>
+          <th scope="col">포트폴리오</th>
+          <th scope="col">거래일</th>
+          <th scope="col">티커</th>
+          <th scope="col">체결단가</th>
+          <th scope="col">수량</th>
+          <th scope="col">매매구분</th>
+          <th scope="col">거래금액</th>
+          <th scope="col">수수료</th>
+          <th scope="col">환율</th>
+          <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <select class="form-control m-1" id="portfolioId">
+                    <option>성장주포트폴리오</option>
+                    <option>배당주포트폴리오</option>
+                </select>                
+            </td>
+            <td>
+                <input type="date" class="form-control m-1" id="tradingDate"/>
+            </td>
+            <td>
+                <input type="text" class="form-control m-1" id="ticker" size="5"/>
+            </td>
+            <td>
+                <input type="text" class="form-control m-1" id="unitPrice" size="10"/>
+            </td>
+            <td>
+                <input type="text" class="form-control m-1" id="stockNum" size="5"/>
+            </td>
+            <td>
+                <select class="form-control m-1" id="tradingType">
+                    <option>매수</option>
+                    <option>매도</option>
+                </select>
+            </td>
+            <td>
+                <input type="text" class="form-control m-1" id="tradingAmount" size="10"/>
+            </td>
+            <td>
+                <input type="text" class="form-control m-1" id="fee" size="10"/>
+            </td>
+            <td>
+                <input type="text" class="form-control m-1" id="exchangeRate" size="10"/>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary m-1">추가</button>
+                <button type="button" class="btn btn-primary m-1">수정</button>
+                <button type="button" class="btn btn-primary m-1">삭제</button>
+            </td>
+
+        </tr>
+    </tbody>
+  </table>

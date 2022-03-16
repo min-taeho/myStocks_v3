@@ -1,0 +1,63 @@
+<form>
+    <div class="mb-3 row">
+      <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
+      <div class="col-xs-3 col-sm-auto">
+        <input id="table-complete-search" type="text" class="form-control" name="searchTerm" [(ngModel)]="service.searchTerm">
+      </div>
+      <span class="col col-form-label" *ngIf="service.loading$ | async">Loading...</span>
+    </div>
+  
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col" sortable2="sector" (sort)="onSort($event)">경기순환/섹터</th>
+          <th scope="col" sortable2="ticker" (sort)="onSort($event)">티커</th>
+          <th scope="col" sortable2="currentPrice" (sort)="onSort($event)">현재가</th>
+          <th scope="col" sortable2="desiredPurchasePrice" (sort)="onSort($event)">매수희망가</th>
+          <th scope="col" sortable2="declineRate" (sort)="onSort($event)">최고가Vs하락률</th>
+          <th scope="col" sortable2="under10Price" (sort)="onSort($event)">10% / 20% / 30% 하락</th>
+          <th scope="col" sortable2="w52" (sort)="onSort($event)">최저-52주-최고</th>
+          <th scope="col" sortable2="dividendYield" (sort)="onSort($event)">배당수익률</th>
+          <th scope="col" sortable2="fiveyearAvgDividendYield" (sort)="onSort($event)">5년평균배당률</th>
+          <th scope="col" sortable2="payoutRatio" (sort)="onSort($event)">배당성향</th>
+          <th scope="col" sortable2="dividendGrowth" (sort)="onSort($event)">배당성장년수</th>
+          <th scope="col" sortable2="annualPayout" (sort)="onSort($event)">배당금</th>
+          <th scope="col" sortable2="dividendPayMonth" (sort)="onSort($event)">배당주기</th>
+        </tr>
+      </thead>
+     
+      <tbody>
+        <tr *ngFor="let interestStock of interestStocks$ | async"
+            (dblclick)="rowDoubleClick($event, interestStock.ticker)">
+          <td><ngb-highlight [result]="interestStock.sector" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="interestStock.ticker" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="interestStock.currentPrice | number" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="interestStock.desiredPurchasePrice | number" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="interestStock.declineRate | number" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="interestStock.under10Price" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="interestStock.w52" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="interestStock.dividendYield | number" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="interestStock.fiveyearAvgDividendYield | number" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="interestStock.payoutRatio | number" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="interestStock.dividendGrowth | number" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="interestStock.annualPayout | number" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="interestStock.dividendPayMonth" [term]="service.searchTerm"></ngb-highlight></td>
+        </tr>
+      </tbody>
+    </table>
+     
+  
+  
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination
+        [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+      </ngb-pagination>
+  
+      <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+        <option [ngValue]="2">2 items per page</option>
+        <option [ngValue]="4">4 items per page</option>
+        <option [ngValue]="6">6 items per page</option>
+      </select>
+    </div>
+  
+  </form>

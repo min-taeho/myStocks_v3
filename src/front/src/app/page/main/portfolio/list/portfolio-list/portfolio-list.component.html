@@ -1,0 +1,71 @@
+<form>
+  <div class="mb-3 row">
+    <label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
+    <div class="col-xs-3 col-sm-auto">
+      <input id="table-complete-search" type="text" class="form-control" name="searchTerm" [(ngModel)]="service.searchTerm">
+    </div>
+    <span class="col col-form-label" *ngIf="service.loading$ | async">Loading...</span>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col" sortable="sector" (sort)="onSort($event)">경기순환/섹터</th>
+        <th scope="col" sortable="ticker" (sort)="onSort($event)">티커</th>
+        <th scope="col" sortable="currentPrice" (sort)="onSort($event)">현재가</th>
+        <th scope="col" sortable="declineRate" (sort)="onSort($event)">최고가Vs하락률</th>
+        <th scope="col" sortable="w52" (sort)="onSort($event)">최저-52주-최고</th>
+        <th scope="col" sortable="unitPrice" (sort)="onSort($event)">매수단가</th>
+        <th scope="col" sortable="stockNum" (sort)="onSort($event)">주식수</th>
+        <th scope="col" sortable="totalTradingAmount" (sort)="onSort($event)">매수금액</th>
+        <th scope="col" sortable="evalAmount" (sort)="onSort($event)">평가금액</th>
+        <th scope="col" sortable="earningAmount" (sort)="onSort($event)">수익금액</th>
+        <th scope="col" sortable="earningRate" (sort)="onSort($event)">수익률</th>
+        <th scope="col" sortable="annualPayout" (sort)="onSort($event)">주당배당금</th>
+        <th scope="col" sortable="totalPayout" (sort)="onSort($event)">총배당금</th>
+        <th scope="col" sortable="investmentDivYield" (sort)="onSort($event)">투자배당률</th>
+        <th scope="col" sortable="dividendPayMonth" (sort)="onSort($event)">배당주기</th>
+        <th scope="col" sortable="portion" (sort)="onSort($event)">비중</th>
+      </tr>
+    </thead>
+   
+    <tbody>
+      <tr *ngFor="let portfolio of portfolios$ | async"
+          (dblclick)="rowDoubleClick($event, portfolio.index)">
+        <th scope="row">{{ portfolio.index }}</th>
+        <td><ngb-highlight [result]="portfolio.sector" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="portfolio.ticker" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="portfolio.currentPrice | number" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="portfolio.declineRate | number" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="portfolio.w52" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="portfolio.unitPrice | number" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="portfolio.stockNum | number" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="portfolio.totalTradingAmount | number" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="portfolio.evalAmount | number" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="portfolio.earningAmount | number" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="portfolio.earningRate | number" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="portfolio.annualPayout | number" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="portfolio.totalPayout | number" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="portfolio.investmentDivYield | number" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="portfolio.dividendPayMonth" [term]="service.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="portfolio.portion | number" [term]="service.searchTerm"></ngb-highlight></td>
+      </tr>
+    </tbody>
+  </table>
+   
+
+
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+      [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+    </ngb-pagination>
+
+    <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select>
+  </div>
+
+</form>

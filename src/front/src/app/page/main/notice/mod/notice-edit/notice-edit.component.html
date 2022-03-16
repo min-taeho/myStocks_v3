@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col text-end">
+        <button type="button" class="btn btn-outline-secondary m-1" (click)="toList()">목록</button>
+    </div>
+</div>
+<div class="row">
+    <form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        <input type="text" class="form-control" id="title" value="미국 블랙프라이데이 일정">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <textarea type="text" class="form-control" id="contents">contensts.....
+                        </textarea>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<div class="col text-center">
+    <button type="button" class="btn btn-secondary m-1" (click)="save()">저장</button>
+</div>
