@@ -1,17 +1,11 @@
 package com.nuritech.stock.mystock.web;
 
-import com.nuritech.stock.mystock.dto.portfolio.PortfolioModifyRequestDto;
-import com.nuritech.stock.mystock.dto.portfolio.PortfolioResponseDto;
-import com.nuritech.stock.mystock.dto.portfolio.PortfolioSaveRequestDto;
 import com.nuritech.stock.mystock.dto.portfolioStock.PortfolioStockModifyRequestDto;
 import com.nuritech.stock.mystock.dto.portfolioStock.PortfolioStockResponseDto;
 import com.nuritech.stock.mystock.dto.portfolioStock.PortfolioStockSaveRequestDto;
-import com.nuritech.stock.mystock.dto.stock.StockResponseDto;
-import com.nuritech.stock.mystock.service.PortfolioService;
 import com.nuritech.stock.mystock.service.PortfolioStockService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -83,16 +77,14 @@ public class PortfolioStockApiController {
      */
     @GetMapping("/api/v1/portfolioStock/byEmailAndPortfolioId")
     public List<PortfolioStockResponseDto> findStockByPortfolioId(@RequestParam("email") String email,
-                                                                  @RequestParam("portfolioId") Long portfolioId,
-                                                                  @RequestParam("sortBy") String sortBy,
-                                                                  @RequestParam("sortDirection") String sortDirection) {
+                                                                  @RequestParam("portfolioId") Long portfolioId) {
 
-        log.debug("PortfolioStockApiController::findStockByPortfolioId::sortBy={}, sorDirection={}", sortBy, sortDirection);
-        Sort.Direction direction = "Desc".equals(sortDirection) ? Sort.Direction.DESC : Sort.Direction.ASC;
+        //log.debug("PortfolioStockApiController::findStockByPortfolioId::sortBy={}, sorDirection={}", sortBy, sortDirection);
+        //Sort.Direction direction = "Desc".equals(sortDirection) ? Sort.Direction.DESC : Sort.Direction.ASC;
 
         // 필수입력값 체크 로직 추가 필요
         //return portfolioStockService.findStockByPortfolioId(email, portfolioId);
-        List<PortfolioStockResponseDto> list = portfolioStockService.findStockByPortfolioId(email, portfolioId, direction, sortBy);
+        List<PortfolioStockResponseDto> list = portfolioStockService.findStockByPortfolioId(email, portfolioId);
         return list;
 
 

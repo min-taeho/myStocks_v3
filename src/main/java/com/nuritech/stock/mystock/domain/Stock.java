@@ -22,7 +22,7 @@ public class Stock extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String ticker;
 
     @Column
@@ -126,7 +126,8 @@ public class Stock extends BaseTimeEntity {
 
     private void setRefField() {
         if (ObjectUtils.isNotEmpty(this.currentPrice) && ObjectUtils.isNotEmpty(this.highestPrice)) {
-            this.declineRate = (this.currentPrice.subtract(this.highestPrice)).divide(this.highestPrice, 4, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
+            this.declineRate = (this.currentPrice.subtract(this.highestPrice)).divide(this.highestPrice, 4, RoundingMode.HALF_UP);
+            //this.declineRate = (this.currentPrice.subtract(this.highestPrice)).divide(this.highestPrice);
         }
     }
 }

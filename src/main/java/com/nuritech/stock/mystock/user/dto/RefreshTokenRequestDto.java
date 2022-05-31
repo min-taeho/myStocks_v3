@@ -14,6 +14,6 @@ public class RefreshTokenRequestDto implements Serializable {
     private static final long serialVersionUID = 5926468583005150707L;
 
     private Long userId;
-    private String email;
+    private String authId;
     private String refreshToken;
 }

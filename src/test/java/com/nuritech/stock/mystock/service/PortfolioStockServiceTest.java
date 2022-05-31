@@ -513,7 +513,7 @@ public class PortfolioStockServiceTest {
         Long portfolioId = 474L;
 
         // id값으로 저장된 객체 조회
-        List<PortfolioStockResponseDto> entities = service.findStockByPortfolioId(email, portfolioId, Sort.Direction.ASC, "totalTradingAmount");
+        List<PortfolioStockResponseDto> entities = service.findStockByPortfolioId(email, portfolioId);
 
         for(PortfolioStockResponseDto dto : entities) {
             System.out.println(">>> list portfolioStock::portfolio name="+dto.getPortfolio().getName()+

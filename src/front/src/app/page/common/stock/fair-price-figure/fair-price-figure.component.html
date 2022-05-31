@@ -1,158 +1,152 @@
 <table class="table">
-    <tbody> 
-        <tr>
-            <th class="bg-success text-center" colspan="2">Invesco Capital Mana....</th> 
-            <th class="bg-danger bold text-center ">상승률</th> 
-            <th class="bg-primary bold text-center ">하락률</th> 
-            <td class="align-center" colspan="2">
-                <button type="button" class="btn btn-info btn-fill btn-sm">show position</button>
-            </td> 
-        </tr>
-        <!-- 100% 구간 -->
-        <tr>
-            <td class="text-end" v-bind:class="{ 'bg-info': showPoint[0] }">$46.42</td> 
-            <th class="bg-dark text-white text-center">최고</th> 
-            <td class="text-end text-danger">15.13%</td>  <!--상승률 -->
-            <td class="text-end bg-primary text-white ">0%</td>  <!--하락률 -->
-            <td> &nbsp;</td> 
-            <td> &nbsp;</td> 
-        </tr>
-        <tr>
-            <td> </td> 
-            <td> &nbsp;</td> 
-            <td class="text-end text-danger"></td>  <!--상승률 -->
-            <td class="text-end text-primary"></td>  <!--하락률 -->
-            <td class="text-end text-primary" ></td> 
-            <td class="bg-primary text-white text-center">75%</td> 
-        </tr>
-        <tr>
-            <td> </td> 
-            <td> &nbsp;</td> 
-            <td class="text-end text-danger"></td>  <!--상승률 -->
-            <td class="text-end text-primary"></td>  <!--하락률 -->
-            <td class="text-end text-primary"></td> 
-            <td class="bg-primary text-white text-center">50%</td> 
-        </tr>
-        <tr>
-            <td> </td> 
-            <td> &nbsp;</td> 
-            <td class="text-end text-danger"></td>  <!--상승률 -->
-            <td class="text-end text-primary"></td>  <!--하락률 -->
-            <td class="text-end text-primary"></td> 
-            <td class="bg-primary text-white text-center">25%</td> 
-        </tr>
-<!-- 75% 구간 -->
-        <tr>
-            <td class="text-end"></td> 
-            <td class="bg-dark text-white text-center">75%</td> 
-            <td class="text-end text-danger"></td>  <!--상승률 -->
-            <td class="text-end text-primary"></td>  <!--하락률 -->
-            <td> &nbsp;</td> 
-            <td> &nbsp;</td> 
-        </tr>
-        <tr>
-            <td> </td> 
-            <td> &nbsp;</td> 
-            <td class="text-end text-danger"></td>  <!--상승률 -->
-            <td class="text-end text-primary"></td>  <!--하락률 -->
-            <td class="text-end text-primary"></td> 
-            <td class="bg-primary text-white text-center">75%</td> 
-        </tr>
-        <tr>
-            <td> </td> 
-            <td> &nbsp;</td> 
-            <td class="text-end text-danger"></td>  <!--상승률 -->
-            <td class="text-end text-primary"></td>  <!--하락률 -->
-            <td class="text-end text-primary"></td> 
-            <td class="bg-primary text-white text-center">50%</td> 
-        </tr>
-        <tr>
-            <td> </td> 
-            <td> &nbsp;</td> 
-            <td class="text-end text-danger"></td>  <!--상승률 -->
-            <td class="text-end text-primary"></td>  <!--하락률 -->
-            <td class="text-end text-primary"></td> 
-            <td class="bg-primary text-white text-center">25%</td> 
-        </tr>
-
-
-        <!-- 50% 구간 -->
-        <tr>
-            <td class="text-end"></td> 
-            <td class="bg-dark text-white text-center">50%</td> 
-            <td class="text-end text-danger"></td>  <!--상승률 -->
-            <td class="text-end text-primary"></td>  <!--하락률 -->
-            <td> &nbsp;</td> 
-            <td> &nbsp;</td> 
-        </tr>
-        <tr>
-            <td> </td> 
-            <td> &nbsp;</td> 
-            <td class="text-end text-danger"></td>  <!--상승률 -->
-            <td class="text-end text-primary"></td>  <!--하락률 -->
-            <td class="text-end text-primary"></td> 
-            <td class="bg-primary text-white text-center">75%</td> 
-        </tr>
-        <tr>
-            <td> </td> 
-            <td> &nbsp;</td> 
-            <td class="text-end text-danger"></td>  <!--상승률 -->
-            <td class="text-end text-primary"></td>  <!--하락률 -->
-            <td class="text-end text-primary"></td> 
-            <td class="bg-primary text-white text-center">50%</td> 
-        </tr>
-        <tr>
-            <td> </td> 
-            <td> &nbsp;</td> 
-            <td class="text-end text-danger"></td>  <!--상승률 -->
-            <td class="text-end text-primary"></td>  <!--하락률 -->
-            <td class="text-end text-primary"></td> 
-            <td class="bg-primary text-white text-center">25%</td> 
-        </tr>
-
-
-        <!-- 25% 구간 -->
-        <tr>
-            <td class="text-end"></td> 
-            <td class="bg-dark text-white text-center">25%</td> 
-            <td class="text-end text-danger"></td>  <!--상승률 -->
-            <td class="text-end text-primary"></td>  <!--하락률 -->
-            <td> &nbsp;</td> 
-            <td> &nbsp;</td> 
-        </tr>
-        <tr>
-            <td> </td> 
-            <td> &nbsp;</td> 
-            <td class="text-end text-danger"></td>  <!--상승률 -->
-            <td class="text-end text-primary"></td>  <!--하락률 -->
-            <td class="text-end text-primary"></td> 
-            <td class="bg-primary text-white text-center">75%</td> 
-        </tr>
-        <tr>
-            <td> </td> 
-            <td> &nbsp;</td> 
-            <td class="text-end text-danger"></td>  <!--상승률 -->
-            <td class="text-end text-primary"></td>  <!--하락률 -->
-            <td class="text-end text-primary"></td> 
-            <td class="bg-primary text-white text-center">50%</td> 
-        </tr>
-        <tr>
-            <td> </td> 
-            <td> &nbsp;</td> 
-            <td class="text-end text-danger"></td>  <!--상승률 -->
-            <td class="text-end text-primary"></td>  <!--하락률 -->
-            <td class="text-end text-primary"></td> 
-            <td class="bg-primary text-white text-center">25%</td> 
-        </tr>
-
-        <tr>
-            <td class="text-end"></td> 
-            <th class="bg-dark text-white text-center">최저</th> 
-            <td class="text-end text-danger"></td>  <!--상승률 -->
-            <td class="text-end text-primary"></td>  <!--하락률 -->
-            <td> &nbsp;</td> 
-            <td> &nbsp;</td> 
-        </tr>
-      </tbody>
-
+  <tbody> 
+    <tr>
+      <th class="bg-success text-center" colspan="2">Invesco Capital Mana....</th> 
+      <th class="bg-danger bold text-center ">상승률</th> 
+      <th class="bg-primary bold text-center ">하락률</th> 
+      <td class="align-center" colspan="2">
+          <button type="button" class="btn btn-info btn-fill btn-sm">show position</button>
+      </td> 
+    </tr>
+    <!-- 100% 구간 -->
+    <tr>
+      <td class="text-end" [ngClass]="{ 'bg-info': showPoint[0] }">{{ model.highestPrice | currency }}</td> 
+      <th class="bg-dark text-white text-center">최고</th> 
+      <td class="text-end text-danger">{{ model.rise_rate1 | percent: '2.2' }}</td>  <!--상승률 -->
+      <td class="text-end bg-primary text-white ">0%</td>  <!--하락률 -->
+      <td> &nbsp;</td> 
+      <td> &nbsp;</td> 
+    </tr>
+    <tr>
+      <td> </td> 
+      <td> &nbsp;</td> 
+      <td class="text-end text-danger">{{ model.rise_rate2 | percent: '2.2' }}</td>  <!--상승률 -->
+      <td class="text-end text-primary">{{ model.drop_rate1 | percent: '2.2' }}</td>  <!--하락률 -->
+      <td class="text-end text-primary" [ngClass]="{ 'bg-info': showPoint[1] }">{{ model.seg100_down75 | currency }}</td> 
+      <td class="bg-primary text-white text-center">75%</td> 
+    </tr>
+    <tr>
+      <td> </td> 
+      <td> &nbsp;</td> 
+      <td class="text-end text-danger">{{ model.rise_rate3 | percent: '2.2' }}</td>  <!--상승률 -->
+      <td class="text-end text-primary">{{ model.drop_rate2 | percent: '2.2' }}</td>  <!--하락률 -->
+      <td class="text-end text-primary" [ngClass]="{ 'bg-info': showPoint[2] }">{{ model.seg100_down50 | currency }}</td> 
+      <td class="bg-primary text-white text-center">50%</td> 
+    </tr>
+    <tr>
+      <td> </td> 
+      <td> &nbsp;</td> 
+      <td class="text-end text-danger">{{ model.rise_rate4 | percent: '2.2' }}</td>  <!--상승률 -->
+      <td class="text-end text-primary">{{ model.drop_rate3 | percent: '2.2' }}</td>  <!--하락률 -->
+      <td class="text-end text-primary" [ngClass]="{ 'bg-info': showPoint[3] }">{{ model.seg100_down25 | currency }}</td> 
+      <td class="bg-primary text-white text-center">25%</td> 
+    </tr>
+    <!-- 75% 구간 -->
+    <tr>
+      <td class="text-end" [ngClass]="{ 'bg-info': showPoint[4] }">{{ model.segment75 | currency }}</td> 
+      <td class="bg-dark text-white text-center">75%</td> 
+      <td class="text-end text-danger">{{ model.rise_rate5 | percent: '2.2' }}</td>  <!--상승률 -->
+      <td class="text-end text-primary">{{ model.drop_rate4 | percent: '2.2' }}</td>  <!--하락률 -->
+      <td> &nbsp;</td> 
+      <td> &nbsp;</td> 
+    </tr>
+    <tr>
+      <td> </td> 
+      <td> &nbsp;</td> 
+      <td class="text-end text-danger">{{ model.rise_rate6 | percent: '2.2' }}</td>  <!--상승률 -->
+      <td class="text-end text-primary">{{ model.drop_rate5 | percent: '2.2' }}</td>  <!--하락률 -->
+      <td class="text-end text-primary" [ngClass]="{ 'bg-info': showPoint[5] }">{{ model.seg75_down75 | currency }}</td> 
+      <td class="bg-primary text-white text-center">75%</td> 
+    </tr>
+    <tr>
+      <td> </td> 
+      <td> &nbsp;</td> 
+      <td class="text-end text-danger">{{ model.rise_rate7 | percent: '2.2' }}</td>  <!--상승률 -->
+      <td class="text-end text-primary">{{ model.drop_rate6 | percent: '2.2' }}</td>  <!--하락률 -->
+      <td class="text-end text-primary" [ngClass]="{ 'bg-info': showPoint[6] }">{{ model.seg75_down50 | currency }}</td> 
+      <td class="bg-primary text-white text-center">50%</td> 
+    </tr>
+    <tr>
+      <td> </td> 
+      <td> &nbsp;</td> 
+      <td class="text-end text-danger">{{ model.rise_rate8 | percent: '2.2' }}</td>  <!--상승률 -->
+      <td class="text-end text-primary">{{ model.drop_rate7 | percent: '2.2' }}</td>  <!--하락률 -->
+      <td class="text-end text-primary" [ngClass]="{ 'bg-info': showPoint[7] }">{{ model.seg75_down25 | currency }}</td> 
+      <td class="bg-primary text-white text-center">25%</td> 
+    </tr>
+    <!-- 50% 구간 -->
+    <tr>
+      <td class="text-end" [ngClass]="{ 'bg-info': showPoint[8] }">{{ model.segment50 | currency }}</td> 
+      <td class="bg-dark text-white text-center">50%</td> 
+      <td class="text-end text-danger">{{ model.rise_rate9 | percent: '2.2' }}</td>  <!--상승률 -->
+      <td class="text-end text-primary">{{ model.drop_rate8 | percent: '2.2' }}</td>  <!--하락률 -->
+      <td> &nbsp;</td> 
+      <td> &nbsp;</td> 
+    </tr>
+    <tr>
+      <td> </td> 
+      <td> &nbsp;</td> 
+      <td class="text-end text-danger">{{ model.rise_rate10 | percent: '2.2' }}</td>  <!--상승률 -->
+      <td class="text-end text-primary">{{ model.drop_rate9 | percent: '2.2' }}</td>  <!--하락률 -->
+      <td class="text-end text-primary" [ngClass]="{ 'bg-info': showPoint[9] }">{{ model.seg50_down75 | currency }}</td> 
+      <td class="bg-primary text-white text-center">75%</td> 
+    </tr>
+    <tr>
+      <td> </td> 
+      <td> &nbsp;</td> 
+      <td class="text-end text-danger">{{ model.rise_rate11 | percent: '2.2' }}</td>  <!--상승률 -->
+      <td class="text-end text-primary">{{ model.drop_rate10 | percent: '2.2' }}</td>  <!--하락률 -->
+      <td class="text-end text-primary" [ngClass]="{ 'bg-info': showPoint[10] }">{{ model.seg50_down50 | currency }}</td> 
+      <td class="bg-primary text-white text-center">50%</td> 
+    </tr>
+    <tr>
+      <td> </td> 
+      <td> &nbsp;</td> 
+      <td class="text-end text-danger">{{ model.rise_rate12 | percent: '2.2' }}</td>  <!--상승률 -->
+      <td class="text-end text-primary">{{ model.drop_rate11 | percent: '2.2' }}</td>  <!--하락률 -->
+      <td class="text-end text-primary" [ngClass]="{ 'bg-info': showPoint[11] }">{{ model.seg50_down25 | currency }}</td> 
+      <td class="bg-primary text-white text-center">25%</td> 
+    </tr>
+    <!-- 25% 구간 -->
+    <tr>
+      <td class="text-end" [ngClass]="{ 'bg-info': showPoint[12] }">{{ model.segment25 | currency }}</td> 
+      <td class="bg-dark text-white text-center">25%</td> 
+      <td class="text-end text-danger">{{ model.rise_rate13 | percent: '2.2' }}</td>  <!--상승률 -->
+      <td class="text-end text-primary">{{ model.drop_rate12 | percent: '2.2' }}</td>  <!--하락률 -->
+      <td> &nbsp;</td> 
+      <td> &nbsp;</td> 
+    </tr>
+    <tr>
+      <td> </td> 
+      <td> &nbsp;</td> 
+      <td class="text-end text-danger">{{ model.rise_rate14 | percent: '2.2' }}</td>  <!--상승률 -->
+      <td class="text-end text-primary">{{ model.drop_rate13 | percent: '2.2' }}</td>  <!--하락률 -->
+      <td class="text-end text-primary" [ngClass]="{ 'bg-info': showPoint[13] }">{{ model.seg25_down75 | currency }}</td> 
+      <td class="bg-primary text-white text-center">75%</td> 
+    </tr>
+    <tr>
+      <td> </td> 
+      <td> &nbsp;</td> 
+      <td class="text-end text-danger">{{ model.rise_rate15 | percent: '2.2' }}</td>  <!--상승률 -->
+      <td class="text-end text-primary">{{ model.drop_rate14 | percent: '2.2' }}</td>  <!--하락률 -->
+      <td class="text-end text-primary" [ngClass]="{ 'bg-info': showPoint[14] }">{{ model.seg25_down50 | currency }}</td> 
+      <td class="bg-primary text-white text-center">50%</td> 
+    </tr>
+    <tr>
+      <td> </td> 
+      <td> &nbsp;</td> 
+      <td class="text-end text-danger">{{ model.rise_rate16 | percent: '2.2' }}</td>  <!--상승률 -->
+      <td class="text-end text-primary">{{ model.drop_rate15 | percent: '2.2' }}</td>  <!--하락률 -->
+      <td class="text-end text-primary" [ngClass]="{ 'bg-info': showPoint[15] }">{{ model.seg25_down25 | currency }}</td> 
+      <td class="bg-primary text-white text-center">25%</td> 
+    </tr>
+    <tr>
+      <td class="text-end" [ngClass]="{ 'bg-info': showPoint[16] }">{{ model.lowerPrice | currency }}</td> 
+      <th class="bg-dark text-white text-center">최저</th> 
+      <td class="text-end text-danger">{{ model.rise_rate17 | percent: '2.2' }}</td>  <!--상승률 -->
+      <td class="text-end text-primary">{{ model.drop_rate16 | percent: '2.2' }}</td>  <!--하락률 -->
+      <td> &nbsp;</td> 
+      <td> &nbsp;</td> 
+    </tr>
+  </tbody>
 </table>

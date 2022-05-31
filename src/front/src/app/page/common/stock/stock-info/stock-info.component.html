@@ -1,156 +1,165 @@
 <div class="row">
-    <div class="col text-end">
-        <button type="button" class="btn btn-secondary-outline m-1">Yahoo Finance</button>
-        <button type="button" class="btn btn-secondary-outline m-1">Seeking Alpha</button>
-    </div>    
-</div>
-<div *ngIf="!editMode" class="row">
-    <div class="col">
-        <table class="table table-striped">
-            <caption>SPHD [Invesco Capital Management LLC - Invesco S&P 500 High Dividend Low Volatility ETF]</caption>
-            <tbody>
-              <tr>
-                <th>현재가</th>
-                <td>$100</td>
-                <td></td>
-                <th>매수희망가</th>
-                <td>$100</td>
-              </tr>
-              <tr>
-                <th>52w 최고</th>
-                <td>$100</td>
-                <td></td>
-                <th>52w 최저</th>
-                <td>$100</td>
-              </tr>             
-              <tr>
-                <th>Div Yield (FWD)</th>
-                <td>$100</td>
-                <td></td>
-                <th>5Y Avg Dividend Yield</th>
-                <td>$100</td>
-              </tr>   
-              <tr>
-                <th>Annual Payout (FWD)</th>
-                <td>$100</td>
-                <td></td>
-                <th>Payout Ratio</th>
-                <td>$100</td>
-              </tr>         
-              <tr>
-                <th>Dividend Growth</th>
-                <td></td>
-                <td></td>
-                <th></th>
-                <td></td>
-              </tr> 
-              <tr>
-                <td colspan="5">
-                    <button type="button" class="btn btn-secondary-outline m-1">View Stock Info</button>
-                </td>
-              </tr>                                               
-            </tbody>
-          </table>
-    </div>
-    <div class="col">
-        <app-fair-price-figure></app-fair-price-figure>
-    </div>
-</div>
-<div *ngIf="editMode" class="form-group row">
-    <form>
-        <table class="table table-condensed">
-            <caption>SPHD [Invesco Capital Management LLC - Invesco S&P 500 High Dividend Low Volatility ETF]</caption>
-            <tbody>
-                <tr>
-                    <th class="col-sm-12 col-md-2">현재가</th>
-                    <td class="col-sm-12 col-md-2">$148.21</td>
-                    <th class="col-sm-12 col-md-2">최고가 ↔ 최저가</th>
-                    <td class="col-sm-12 col-md-2">$151.25 ↔ $102.05</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>매수희망가</th>
-                    <td>
-                        <input type="text" class="form-control text-end" id="desiredPurchasePrice" value="100.34.94"/>
-                    </td>
-                    <th>경기순환/섹터</th>
-                    <td>
-                        <select for="sector" class="form-control" id="businessCycle">
-                            <option>회복</option>
-                            <option>호황</option>
-                            <option>후퇴</option>
-                            <option>불황</option>
-                        </select>
-                        <select class="form-control m-1" id="sector">
-                            <option>헬스케어</option>
-                            <option>금융</option>
-                            <option>부동산</option>
-                            <option>정보기술</option>
-                        </select>
-                    </td>
-                    <td></td>
-                    <td></td>                    
-                </tr>             
-                <tr>
-                    <th>Div Yield (FWD)</th>
-                    <td>
-                        <div class="col-xs-2">
-                            <input type="text" class="form-control text-end" id="dividendYield" value="7.94">
-                        </div>
-                        
-                    </td>
-                    <th>5Y Avg Dividend Yield</th>
-                    <td>
-                        <input type="text" class="form-control text-end" id="fiveyearAvgDividendYield" value="7.54">
-                    </td>
-                    <td></td>
-                    <td></td>                    
-                </tr>   
-                <tr>
-                    <th>Annual Payout (FWD)</th>
-                    <td>
-                        <input type="text" class="form-control text-end" id="annualPayout" value="1.54">
-                    </td>
-                    <th>Payout Ratio</th>
-                    <td>
-                        <input type="text" class="form-control text-end" id="payoutRatio" value="80.01">
-                    </td>
-                    <td></td>
-                    <td></td>                    
-                </tr>         
-                <tr>
-                    <th>5년 성장률</th>
-                    <td>
-                        <input type="text" class="form-control text-end" id="fiveyearGrowthRate" value="15.67">
-                    </td>
-                    <th>배당성장 년수</th>
-                    <td>
-                        <input type="text" class="form-control text-end" id="dividendGrowth" value="5">
-                    </td>
-                    <td></td>
-                    <td></td>                    
-                </tr> 
-
-                <tr>
-                <td colspan="4">
-                    <textarea type="text" class="form-control" 
-                              rows="10"
-                              id="companyInfo">contensts.....
-                    </textarea>
-                </td>
-                <td></td>
-                <td></td>                
-                </tr>                                               
-            </tbody>
-        </table>
-    </form>
+  <div class="col text-end">
+    <button type="button" class="btn btn-secondary-outline m-1" (click)="newWindow('yahoofinance')">Yahoo Finance</button>
+    <button type="button" class="btn btn-secondary-outline m-1" (click)="newWindow('seekingalpha')">Seeking Alpha</button>
+  </div>    
 </div>
 <div class="row">
-    <div class="col text-center">
-        <button type="button" class="btn btn-secondary m-1" (click)="activeModal.close('Close click')">닫기</button>
-        <button *ngIf="!editMode" type="button" class="btn btn-secondary m-1" (click)="doChangeEditMode()">수정</button>
-        <button *ngIf="editMode" type="button" class="btn btn-secondary m-1" (click)="doSave()">저장</button>
-    </div>       
+  <div class="col" *ngIf="!editMode" >
+    <table class="table table-striped">
+      <caption><h2>{{ model.stockName }}</h2></caption>
+      <tbody>
+        <tr>
+          <th>현재가</th>
+          <td>{{ model.currentPrice | currency }}</td>
+          <td></td>
+          <th>매수희망가</th>
+          <td>{{ model.desiredPurchasePrice | currency }}</td>
+        </tr>
+        <tr>
+          <th>52w 최고</th>
+          <td>{{ model.highestPrice | currency }}</td>
+          <td></td>
+          <th>52w 최저</th>
+          <td>{{ model.lowerPrice | currency }}</td>
+        </tr>             
+        <tr>
+          <th>Div Yield (FWD)</th>
+          <td>{{ model.dividendYield | number }}</td>
+          <td></td>
+          <th>5Y Avg Dividend Yield</th>
+          <td>{{ model.fiveyearAvgDividendYield | number }}</td>
+        </tr>   
+        <tr>
+          <th>Annual Payout (FWD)</th>
+          <td>{{ model.annualPayout | currency }}</td>
+          <td></td>
+          <th>Payout Ratio</th>
+          <td>{{ model.payoutRatio | number }}</td>
+        </tr>         
+        <tr>
+          <th>Dividend Growth</th>
+          <td>{{ model.dividendGrowth }}</td>
+          <td></td>
+          <th></th>
+          <td></td>
+        </tr> 
+        <tr>
+          <td colspan="5">
+            <button type="button" class="btn btn-secondary-outline m-1" (click)="viewStockInfo()">View Stock Info</button>
+          </td>
+        </tr>                                               
+      </tbody>
+    </table>
+  </div>
+  <div class="col" *ngIf="editMode" >
+    <form>
+      <table class="table table-condensed">
+        <caption><h2>{{ model.stockName }}</h2></caption>
+        <tbody>
+          <tr>
+            <th class="col-sm-12 col-md-2">현재가</th>
+            <td class="col-sm-12 col-md-2">{{ model.currentPrice | currency }}</td>
+            <th class="col-sm-12 col-md-2">최고가 ↔ 최저가</th>
+            <td class="col-sm-12 col-md-2">{{ model.highestPrice | currency }} ↔ {{ model.lowerPrice | currency }}</td>
+          </tr>
+          <tr>
+            <th>매수희망가</th>
+            <td>
+              <input type="text" class="form-control text-end" 
+                      id="desiredPurchasePrice" name="desiredPurchasePrice"
+                      [(ngModel)]="model.desiredPurchasePrice"/>
+            </td>
+            <th>경기순환/섹터</th>
+            <td>
+              <select class="form-control m-1" 
+                      id="businessCycle" name="businessCycle"
+                      [(ngModel)]="model.businessCycle">
+                      <option value=""></option>
+                      <option value="회복">회복</option>
+                      <option value="호황">호황</option>
+                  <option value="후퇴">후퇴</option>
+                  <option value="불황">불황</option>
+              </select>
+              <select class="form-control m-1" 
+                      id="sector" name="sector"
+                      [(ngModel)]="model.sector">
+                  <option value="헬스케어">헬스케어</option>
+                  <option value="금융">금융</option>
+                  <option value="부동산">부동산</option>
+                  <option value="정보기술">정보기술</option>
+              </select>
+            </td>
+          </tr>             
+          <tr>
+            <th>Div Yield (FWD)</th>
+            <td>
+                <div class="col-xs-2">
+                    <input type="text" class="form-control text-end" 
+                            id="dividendYield" name="dividendYield" 
+                            [(ngModel)]="model.dividendYield">
+                </div>
+                
+            </td>
+            <th>5Y Avg Dividend Yield</th>
+            <td>
+                <input type="text" class="form-control text-end" 
+                        id="fiveyearAvgDividendYield" name="fiveyearAvgDividendYield"
+                        [(ngModel)]="model.fiveyearAvgDividendYield">
+            </td>                
+          </tr>   
+          <tr>
+            <th>Annual Payout (FWD)</th>
+            <td>
+                <input type="text" class="form-control text-end" 
+                        id="annualPayout" name="annualPayout"
+                        [(ngModel)]="model.annualPayout">
+            </td>
+            <th>Payout Ratio</th>
+            <td>
+                <input type="text" class="form-control text-end" 
+                        id="payoutRatio" name="payoutRatio" 
+                        [(ngModel)]="model.payoutRatio">
+            </td>                 
+          </tr>         
+          <tr>
+            <th>5년 성장률</th>
+            <td>
+                <input type="text" class="form-control text-end" 
+                        id="fiveyearGrowthRate" name="fiveyearGrowthRate" 
+                        [(ngModel)]="model.fiveyearGrowthRate">
+            </td>
+            <th>배당성장 년수</th>
+            <td>
+                <input type="text" class="form-control text-end" 
+                        id="dividendGrowth" name="dividendGrowth" 
+                        [(ngModel)]="model.dividendGrowth">
+            </td>                   
+          </tr> 
+  
+          <tr>
+            <td colspan="4">
+              <textarea class="form-control m-1" 
+                        id="companyInfo" name="companyInfo" 
+                        rows="10"
+                        [(ngModel)]="model.companyInfo">
+              </textarea>
+            </td>             
+          </tr>                                               
+        </tbody>
+      </table>
+    </form>
+  </div>
+  <div class="col">
+    <app-fair-price-figure [ticker]="ticker"></app-fair-price-figure>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col text-center">
+      <button type="button" class="btn btn-secondary m-1" (click)="activeModal.close('Close click')">닫기</button>
+      <button *ngIf="!editMode" type="button" class="btn btn-secondary m-1" (click)="doChangeEditMode(true)">수정</button>
+      <button *ngIf="editMode" type="button" class="btn btn-secondary m-1" (click)="doSave()">저장</button>
+  </div>       
 
 </div>

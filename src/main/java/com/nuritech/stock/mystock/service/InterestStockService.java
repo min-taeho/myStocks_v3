@@ -96,10 +96,8 @@ public class InterestStockService {
      * @return
      */
     @Transactional(readOnly = true)
-    public List<InterestStockResponseDto> findByEmail(String email,
-                                                      Sort.Direction direction,
-                                                      String sortBy) {
-        return repository.findByEmail(email, Sort.by(direction, sortBy)).stream()
+    public List<InterestStockResponseDto> findByEmail(String email) {
+        return repository.findByEmail(email).stream()
                 .map(InterestStockResponseDto::new)
                 .collect(Collectors.toList());
     }

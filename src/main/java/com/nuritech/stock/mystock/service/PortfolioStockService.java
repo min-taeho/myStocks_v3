@@ -143,12 +143,10 @@ public class PortfolioStockService {
      */
     @Transactional(readOnly = true)
     public List<PortfolioStockResponseDto> findStockByPortfolioId(String email,
-                                                                  Long portfolioId,
-                                                                  Sort.Direction direction,
-                                                                  String sortBy) {
+                                                                  Long portfolioId) {
 
         Portfolio portfolio = portfolioRepository.findByIdAndEmail(portfolioId, email);
-        List<PortfolioStock> entities = repository.findByPortfolio(portfolio, Sort.by(direction, sortBy));
+        List<PortfolioStock> entities = repository.findByPortfolio(portfolio);
 
         List<PortfolioStockResponseDto> list = new ArrayList<PortfolioStockResponseDto>();
         entities.forEach(entity -> {

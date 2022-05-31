@@ -1,12 +1,15 @@
 package com.nuritech.stock.mystock.user.web;
 
-import com.nuritech.stock.mystock.common.util.JwtTokenUtil;
+import com.nuritech.stock.mystock.common.exception.ApiException;
+import com.nuritech.stock.mystock.common.exception.ExceptionCode;
+import com.nuritech.stock.mystock.common.util.JwtUtil;
 import com.nuritech.stock.mystock.user.ApiTokenType;
 import com.nuritech.stock.mystock.user.dto.*;
 import com.nuritech.stock.mystock.user.service.UserService;
 import com.nuritech.stock.mystock.user.dto.SignUpRequestDto;
 import com.nuritech.stock.mystock.user.dto.SignUpResponseDto;
 import com.nuritech.stock.mystock.user.dto.UserResponseDto;
+import io.jsonwebtoken.security.SignatureException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -19,13 +22,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @Slf4j
 @RestController
 @RequiredArgsConstructor
 public class UserApiController {
 
     @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+    private JwtUtil jwtTokenUtil;
 
     @Autowired
     private UserService userService;
@@ -40,14 +44,16 @@ public class UserApiController {
     public SignUpResponseDto signUp(@RequestBody SignUpRequestDto request) {
         SignUpResponseDto response = new SignUpResponseDto();
 
+        log.debug(">>>> UserApiController::signUp..");
         try {
             userService.save(request);
             response.setResponse("success");
             response.setMessage("회원가입을 성공적으로 완료했습니다.");
         } catch (Exception e) {
-            response.setResponse("failed");
-            response.setMessage("회원가입을 하는 도중 오류가 발생했습니다.");
-            response.setData(e.toString());
+            //response.setResponse("failed");
+            //response.setMessage("회원가입을 하는 도중 오류가 발생했습니다.");
+            //response.setData(e.toString());
+            throw e;
         }
         return response;
     }
@@ -71,10 +77,7 @@ public class UserApiController {
     @RequestMapping(value = {"/authenticate", "api/v1/login"}, method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody SignInRequestDto dto) throws Exception {
 
-        System.out.println("dto.getEmail()="+dto.getEmail());
-        System.out.println("dto.getPassword()="+dto.getPassword());
-
-        Long userId = userService.authenticate(dto.getEmail(), dto.getPassword());
+        Long userId = userService.signIn(dto);
         /*
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(reqeust.getUsername());
@@ -95,59 +98,4 @@ public class UserApiController {
     }
 
 
-    /**
-     * acdess token이 만료된 경우 refresh token을 이용하여 access token 재발급 한다.
-     * refresh token이 존재하면 refresh token의 유효성을 검증한 후 access token을 재발급 한다.
-     * 이때 refresh token의 만료기한이 7일 이내면 refresh token도 재발급한다.
-     * token의 기간만료여부와 token의 이메일과 request의 이메일이 동일한지 검증하고,
-     * 이상없는 경우 access token을 발급
-     *
-     * @param request
-     * @return
-     * @throws Exception
-     */
-    @PostMapping({"/refreshToken", "api/v1/oauth/refresh"})
-    public ResponseEntity<?> refreshToken(@RequestBody RefreshTokenRequestDto request) throws Exception {
-
-        String refreshToken = request.getRefreshToken();
-        String email = request.getEmail();
-        Long userId = request.getUserId();
-        long remainingDays = 1000 * 60 * 60 * 24 * 7;
-
-        if (ObjectUtils.isEmpty(userId))
-            throw new IllegalArgumentException("The user id could not be verified.");
-        if ( StringUtils.isEmpty(email) )
-            throw new IllegalArgumentException("The email could not be verified.");
-        if ( StringUtils.isEmpty(refreshToken) )
-            throw new IllegalArgumentException("The refresh token could not be verified.");
-
-        // 요청에 포함된 refresh token이 사용자가 발급받은 토큰과 일치하는지 여부 검사
-        if ( !userService.compareIssuedToken(userId, refreshToken, ApiTokenType.REFRESH_TOKEN) )
-            throw new IllegalArgumentException("발급된 Refersh Token과 다릅니다.");
-
-        // refresh token의 기간만료를 검사하고, 토큰에서 추출한 email과 요청자 email 일치여부를 검사하고,
-        // 유효하면 access token 발급
-        String accessToken = jwtTokenUtil.refreshToken(email, refreshToken);
-        String newRefreshToken = "";
-
-        // refresh token의 기간만료일이 7일 이내면 refresh token도 재발급
-        Date expiredDate = jwtTokenUtil.getExpirationDateFromToken(refreshToken);
-        long curTime = System.currentTimeMillis();
-
-        if ( expiredDate.getTime() * 1000 - curTime <= remainingDays ) {
-            newRefreshToken = jwtTokenUtil.generateToken(email, ApiTokenType.REFRESH_TOKEN);
-        }
-
-        // 테이블의 token 정보 갱신
-        RefreshTokenUpdateRequestDto refreshTokenUpdateRequest =
-                RefreshTokenUpdateRequestDto.builder()
-                        .userId(request.getUserId())
-                        .accessToken(accessToken)
-                        .refreshToken(StringUtils.isNotEmpty(newRefreshToken)?newRefreshToken:refreshToken)
-                        .build();
-        userService.refreshToken(refreshTokenUpdateRequest);
-
-        return ResponseEntity.ok(refreshTokenUpdateRequest);
-
-    }
 }

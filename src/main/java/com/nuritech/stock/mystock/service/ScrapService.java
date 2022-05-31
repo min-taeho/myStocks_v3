@@ -1,5 +1,6 @@
 package com.nuritech.stock.mystock.service;
 
+import com.google.gson.JsonSyntaxException;
 import com.nuritech.stock.mystock.common.util.PropertiesUtils;
 import com.nuritech.stock.mystock.domain.InterestStock;
 import com.nuritech.stock.mystock.domain.InterestStockRepository;
@@ -46,10 +47,15 @@ public class ScrapService {
             StockDto stock = new StockDto(item);
 
             // Scrap 정보로 갱신
-            stock.setScrapInfo();
+            try {
+                stock.setScrapInfo();
 
-            // 갱신된 정보로 저장
-            stockService.modify(stock.toStockModifyRequestDto());
+                // 갱신된 정보로 저장
+                stockService.modify(stock.toStockModifyRequestDto());
+            } catch (Exception e) {
+                // Exception이 발생하면 로그만 남기고 계속 진행
+                log.debug("ticker={}, error={}", item.getTicker(), e.getMessage());
+            }
         });
 
 

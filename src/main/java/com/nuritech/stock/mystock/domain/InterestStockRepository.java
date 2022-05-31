@@ -12,5 +12,5 @@ public interface InterestStockRepository extends JpaRepository<InterestStock, Lo
     List<InterestStock> findAll();
     */
 
-    List<InterestStock> findByEmail(String email, Sort sort);
+    List<InterestStock> findByEmail(String email);
 }

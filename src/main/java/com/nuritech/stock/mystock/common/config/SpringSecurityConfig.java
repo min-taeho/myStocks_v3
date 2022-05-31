@@ -68,6 +68,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/img/**")
                 .antMatchers("/js/**")
                 .antMatchers("/api/v1/login")
+                .antMatchers("/api/v1/user")
+                .antMatchers("/signUp")
                 .antMatchers("/api/v1/oauth/refresh")
                 .antMatchers("/h2-console/**")
                 .antMatchers("/index")
@@ -85,38 +87,26 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         // We don't need CSRF for this example
         httpSecurity
+                .cors().disable()
                 .csrf().disable()
                 .httpBasic().disable()
-                // dont authenticate this particular request
+                // 모든 리소스에 대해 permitAll(인증절차없이 접근가능)
+                // anyRequest().authenticated()
                 .authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/api/user/log").hasRole("USER")
-                .antMatchers("/api/user/likehumananswer").hasRole("USER")
-                .antMatchers("/api/user/interest").hasRole("USER")
-                //.antMatchers("/api/user/createcard").hasRole("USER")
-                .antMatchers("/api/user/bookmark").hasRole("USER")
-                .antMatchers("/api/qna").hasRole("USER")
-                .antMatchers("/api/faq").hasRole("USER")
-                .antMatchers("/api/me").hasRole("USER")
-                //.antMatchers("/api/notice").hasRole("USER")
-                //.antMatchers("/api/password").hasRole("USER")
-                //.antMatchers("/api/user").hasRole("USER")
-                // 이 요청은 인증을 하지 않는다.
-                //.antMatchers("/authenticate","/signUp","/refreshToken").permitAll()
-                // 다른 모든 요청은 인증을 한다.
-                //.anyRequest().authenticated()
-                .anyRequest().permitAll()
-                .and()
-                // all other requests need to be authenticated
-
+                    .antMatchers("/**")
+                    .permitAll()
+                    .anyRequest().authenticated()
+                    .and()
                 // make sure we use stateless session; session won't be used to
                 // store user's state.
                 .exceptionHandling()
-                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                .and()
+                    .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                    .and()
                 // 상태없는 세션을 이용하며, 세션에 사용자의 상태를 저장하지 않는다.
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .and()
+                .headers().frameOptions().disable()
                 ;
 
         // 모든 요청에 토큰을 검증하는 필터를 추가한다.

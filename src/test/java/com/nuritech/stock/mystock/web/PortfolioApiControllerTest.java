@@ -8,6 +8,7 @@ import com.nuritech.stock.mystock.dto.portfolio.PortfolioResponseDto;
 import com.nuritech.stock.mystock.dto.portfolio.PortfolioSaveRequestDto;
 import com.nuritech.stock.mystock.service.PortfolioService;
 import org.aspectj.lang.annotation.Before;
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -62,9 +63,10 @@ public class PortfolioApiControllerTest {
     private final String _BASE_URL = "http://localhost:";
 
     @BeforeEach
+    @Ignore
     void setUp() {
         // dto 준비
-
+        /*
         PortfolioSaveRequestDto requestDto1 = PortfolioSaveRequestDto.builder()
                 .email(EMAIL)
                 .name(NAME1)
@@ -80,9 +82,12 @@ public class PortfolioApiControllerTest {
         Long result2 = portfolioApiController.save(requestDto2);
 
         this.printData("등록");
+
+         */
     }
 
     @Test
+    @Ignore
     public void portfolio_save_get() throws Exception {
 
         // 결과 조회
@@ -112,6 +117,7 @@ public class PortfolioApiControllerTest {
      * @throws Exception
      */
     @Test
+    @Ignore
     public void portfolio_save_get2() throws Exception {
 
         String _mappingPath  = "/api/v1/portfolio";
@@ -134,6 +140,7 @@ public class PortfolioApiControllerTest {
     }
 
     @Test
+    @Ignore
     public void portfolio_modify_get() throws Exception {
 
         // dto 준비
@@ -170,6 +177,7 @@ public class PortfolioApiControllerTest {
     }
 
     @Test
+    @Ignore
     public void portfolio_remove_get() throws Exception {
 
         // 1번 삭제
@@ -190,6 +198,7 @@ public class PortfolioApiControllerTest {
      * @throws Exception
      */
     @Test
+    @Ignore
     public void findByEmail_test() throws Exception {
 
         /*

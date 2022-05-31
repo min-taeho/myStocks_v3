@@ -13,6 +13,7 @@ import com.nuritech.stock.mystock.dto.stock.StockModifyRequestDto;
 import com.nuritech.stock.mystock.dto.stock.StockResponseDto;
 import com.nuritech.stock.mystock.dto.stock.StockSaveRequestDto;
 import com.nuritech.stock.mystock.service.StockService;
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -80,7 +81,9 @@ public class InterestStockApiControllerTest {
     private final String DATA_NATION = "US";
 
     @BeforeEach
+
     void setUp() {
+        /*
         // dto 준비
         // Stock 객체 생성
         StockSaveRequestDto stockDto1 = StockSaveRequestDto.builder()
@@ -146,9 +149,11 @@ public class InterestStockApiControllerTest {
         Long result2 = interestStockApiController.save(requestDto2);
         System.out.println(">>> result=" + result + ", result2="+result2);
         this.printData("등록");
+        */
     }
 
     @Test
+    @Ignore
     public void interestStock_save_get() throws Exception {
 
         // 결과 조회
@@ -174,6 +179,7 @@ public class InterestStockApiControllerTest {
      * @throws Exception
      */
     @Test
+    @Ignore
     public void interestStock_save_get2() throws Exception {
 
         String _mappingPath  = "/api/v1/interestStock";
@@ -221,6 +227,7 @@ public class InterestStockApiControllerTest {
     }
 
     @Test
+    @Ignore
     public void interestStock_modify_get() throws Exception {
 
         // dto 준비
@@ -252,6 +259,7 @@ public class InterestStockApiControllerTest {
     }
 
     @Test
+    @Ignore
     public void interestStock_remove_get() throws Exception {
 
         // 1번 삭제

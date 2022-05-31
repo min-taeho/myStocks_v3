@@ -3,38 +3,48 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { SingleLayoutComponent } from './layout/single-layout/single-layout.component';
 import { LoginComponent } from './page/auth/login/login.component';
-import { SignUpComponent } from './page/auth/sign-up/sign-up.component';
+import { UserRegisterComponent } from './page/auth/user-register/user-register.component';
 import { NotFoundComponent } from './page/common/not-found/not-found.component';
+import { HeroComponent } from './page/main/hero/hero.component';
 import { InterestStockComponent } from './page/main/interest-stock/interest-stock.component';
-import { NoticeListComponent } from './page/main/notice/list/notice-list/notice-list.component';
-import { NoticeEditComponent } from './page/main/notice/mod/notice-edit/notice-edit.component';
+import { NoticeEditComponent } from './page/main/notice/notice-edit/notice-edit.component';
+import { NoticeListComponent } from './page/main/notice/notice-list/notice-list.component';
+import { NoticeViewComponent } from './page/main/notice/notice-view/notice-view.component';
 import { NoticeComponent } from './page/main/notice/notice.component';
-import { NoticeViewComponent } from './page/main/notice/view/notice-view/notice-view.component';
 import { PortfolioComponent } from './page/main/portfolio/portfolio.component';
 import { TradingNoteComponent } from './page/main/trading-note/trading-note.component';
+import { RequireNoOAuthGuard } from './service/require-no-oauth.guard';
+import { RequireOauthGuard } from './service/require-oauth.guard';
 
 const routes: Routes = [
   {
     path: 'auth',
     component: SingleLayoutComponent,
+    canActivateChild: [RequireNoOAuthGuard],
     children: [
       {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
       },
       {
         path: 'signUp',
-        component: SignUpComponent
+        component: UserRegisterComponent,        
       }
     ]
   },
   { 
+    path: '',
+    redirectTo: '/main',
+    pathMatch: 'full'
+  },  
+  { 
     path: 'main',
     component: MainLayoutComponent,
+    canActivateChild: [RequireOauthGuard],
     children: [
       {
         path: '',
-        component: PortfolioComponent
+        component: PortfolioComponent,
       },
       {
         path: 'portfolio',
@@ -47,7 +57,7 @@ const routes: Routes = [
       {
         path: 'tradingNote',
         component: TradingNoteComponent
-      },
+      },      
       {
         path: 'notice',
         component: NoticeComponent,
@@ -73,7 +83,11 @@ const routes: Routes = [
             component: NoticeEditComponent
           }
         ]
-      }
+      },      
+      {
+        path: 'hero',
+        component: HeroComponent
+      },      
     ]
   },
   {

@@ -54,8 +54,8 @@ dependencies {
     implementation('org.springframework.security:spring-security-taglibs:5.4.6')
 
     // jjwt
-    compile 'io.jsonwebtoken:jjwt-api:0.11.1'
-    runtime 'io.jsonwebtoken:jjwt-impl:0.11.1', 'io.jsonwebtoken:jjwt-jackson:0.11.1' // or 'io.jsonwebtoken:jjwt-gson:0.11.1' for gson
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.1'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.11.1', 'io.jsonwebtoken:jjwt-jackson:0.11.1' // or 'io.jsonwebtoken:jjwt-gson:0.11.1' for gson
     implementation 'com.auth0:java-jwt:3.8.3'
 
     // db
@@ -68,7 +68,8 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.14.2'
 
     // json
-    compile('com.google.code.gson:gson:2.8.5')
+    implementation('com.google.code.gson:gson:2.8.5')
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 
     // utils
     implementation 'org.apache.httpcomponents:httpclient:4.5'
@@ -80,7 +81,7 @@ dependencies {
 
 }
 
-
+/*
 task setUp(type: NpmTask) {
     description = "Install Node.js packages"
     args = ['install']
@@ -94,3 +95,4 @@ task buildFrontEnd(type: NpmTask, dependsOn: setUp) {
 }
 
 processResources.dependsOn 'buildFrontEnd'
+*/

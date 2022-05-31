@@ -1,6 +1,7 @@
 package com.nuritech.stock.mystock.common.util;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.internal.LinkedTreeMap;
 import com.nuritech.stock.mystock.common.constant.ReferenceSiteConstants;
 import lombok.extern.slf4j.Slf4j;
@@ -85,11 +86,14 @@ public class ScrapUtils {
             con.setReadTimeout(5000);
             con.setDoOutput(false);
 
+            log.debug("url={}", url.toString());
+
             if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 // Stream을 처리해줘야 하는 귀찮음이 있음.
                 BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
                 String inputLine;
                 String prefixStr = "root.App.main = ";
+
                 while ((inputLine = br.readLine()) != null) {
                     if ( inputLine.startsWith(prefixStr) ) {
 
@@ -97,6 +101,7 @@ public class ScrapUtils {
                         jsonStr = inputLine.substring(inputLine.indexOf("QuoteSummaryStore")+19, inputLine.indexOf("FinanceConfigStore")-2);
                         jsonStr = jsonStr.replaceAll("\"", "'");
 
+                        log.debug("jsonStr={}"+jsonStr);
                         Gson gson = new Gson();
                         Map<String, Object> map = gson.fromJson(jsonStr, Map.class);
                         stockInfo.put("stockNm", (String)((LinkedTreeMap)map.get("price")).get("longName"));

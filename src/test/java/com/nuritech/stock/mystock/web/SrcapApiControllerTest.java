@@ -10,6 +10,7 @@ import com.nuritech.stock.mystock.dto.stock.StockResponseDto;
 import com.nuritech.stock.mystock.dto.stock.StockSaveRequestDto;
 import com.nuritech.stock.mystock.service.InterestStockService;
 import com.nuritech.stock.mystock.service.StockService;
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -76,7 +77,9 @@ public class SrcapApiControllerTest {
     private final String DATA_NATION = "US";
 
     @BeforeEach
+    @Ignore
     void setUp() {
+        /*
         // dto 준비
         // Stock 객체 생성
         StockSaveRequestDto stockDto1 = StockSaveRequestDto.builder()
@@ -143,9 +146,11 @@ public class SrcapApiControllerTest {
         System.out.println(">>> result=" + result + ", result2="+result2);
         this.printData("준비");
 
+         */
     }
 
     @Test
+    @Ignore
     public void scrap_call() throws Exception {
         // 결과 조회
         srcapApiController.scraping();
@@ -158,6 +163,7 @@ public class SrcapApiControllerTest {
      * @throws Exception
      */
     @Test
+    @Ignore
     public void scrap_call2() throws Exception {
 
         String _mappingPath  = "/api/v1/scrap";

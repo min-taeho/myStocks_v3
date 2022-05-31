@@ -5,18 +5,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 @Getter
 @Setter
 @NoArgsConstructor
 public class UserResponseDto {
-    private String email;
     private Long userId;
-    private String userName;
+    private String authId;
+    private String email;
+    private String password;
 
     public UserResponseDto(UserEntity entity) {
-        this.email = entity.getEmail();
         this.userId = entity.getUserId();
-        this.userName = entity.getUsername();
+        this.authId = entity.getAuthId();
+        this.email = entity.getEmail();
+        this.password = entity.getPassword();
     }
 
 }

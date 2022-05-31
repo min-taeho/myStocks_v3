@@ -12,7 +12,7 @@ public interface PortfolioStockRepository extends JpaRepository<PortfolioStock, 
 
     PortfolioStock findByStockAndPortfolio(Stock stock, Portfolio portfolio);
 
-    List<PortfolioStock> findByPortfolio(Portfolio portfolio, Sort sort);
+    List<PortfolioStock> findByPortfolio(Portfolio portfolio);
 
     List<PortfolioStock> findByStock(Stock stock);
 

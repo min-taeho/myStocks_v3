@@ -78,14 +78,9 @@ public class InterestStockApiController {
      * @return 관심종목 응답 객체 리스트
      */
     @GetMapping("/api/v1/interestStock/byEmail")
-    public List<InterestStockResponseDto> findByEmail(@RequestParam("email") String email,
-                                                      @RequestParam("sortBy") String sortBy,
-                                                      @RequestParam("sortDirection") String sortDirection) {
-
-        log.debug("InterestStockApiController::findByEmail::sortBy={}, sorDirection={}", sortBy, sortDirection);
-        Sort.Direction direction = "Desc".equals(sortDirection) ? Sort.Direction.DESC : Sort.Direction.ASC;
+    public List<InterestStockResponseDto> findByEmail(@RequestParam("email") String email) {
 
         // 필수입력값 체크 로직 추가 필요
-        return interestStockService.findByEmail(email, direction, sortBy);
+        return interestStockService.findByEmail(email);
     }
 }

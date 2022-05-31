@@ -1,9 +1,11 @@
+<!-- 
 <h2>{{ title }}</h2>
 
 <nav>
   <li *ngFor="let page of pageList">
     <a [routerLink]="page.path" [routerLinkActive]="page.css">{{ page.name }}</a>
   </li>
-</nav>
-
-<router-outlet></router-outlet>
+</nav> -->
+<div class="container-fluid" style="font-size: 0.9rem;">
+  <router-outlet></router-outlet>
+</div>

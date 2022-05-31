@@ -95,14 +95,14 @@ public class PortfolioStock extends BaseTimeEntity {
         }
 
         if ( ObjectUtils.isNotEmpty(this.earningAmount) && ObjectUtils.isNotEmpty(this.totalTradingAmount) ) {
-            this.earningRate = this.earningAmount.divide(totalTradingAmount, 4, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
+            this.earningRate = this.earningAmount.divide(totalTradingAmount, 4, RoundingMode.HALF_UP);
         }
         if ( ObjectUtils.isNotEmpty(this.stockNum) && ObjectUtils.isNotEmpty(this.stock.getAnnualPayout()) ) {
             this.totalPayout = new BigDecimal(this.stockNum).multiply(this.stock.getAnnualPayout());
         }
 
         if ( ObjectUtils.isNotEmpty(this.totalPayout) && ObjectUtils.isNotEmpty(this.totalTradingAmount) ) {
-            this.investmentDivYield = this.totalPayout.divide(this.totalTradingAmount, 4, RoundingMode.HALF_UP).multiply(new BigDecimal(100));
+            this.investmentDivYield = this.totalPayout.divide(this.totalTradingAmount, 4, RoundingMode.HALF_UP);
         }
     }
 

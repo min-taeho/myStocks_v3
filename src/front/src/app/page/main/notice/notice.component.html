@@ -1,20 +1,20 @@
 <div class="conatiner">
-    <div class="row">
-        <div class="col">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <h2  for="inputGroupSelect01">게시판</h2>
-                </div>
-            </div>
-        </div>
-        <div class="col text-end">
-        </div>
-    </div>
-    <div class="row">
-        <router-outlet></router-outlet>
-    </div>
-    <div class="row">
-        <!-- footer -->
-    </div>
+  <div class="row">
+      <div class="col">
+          <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <h2 for="inputGroupSelect01">게시판</h2>
+              </div>
+          </div>
+      </div>
+      <div class="col text-end">
+        <button type="button" class="btn btn-secondary m-1" (click)="toAdd()">작성</button>
+      </div>
+  </div>
+  <div class="row">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="row">
+      <!-- footer -->
+  </div>
 </div>
-
